@@ -6,19 +6,11 @@
 <body>
     <script>
         function secondHighest(arr) {
-            // Convert array elements to numbers
-            arr = arr.map(Number);
-            
-            if (arr.length <= 1) {
-                return -Infinity; // Return -Infinity for arrays with less than two elements
-            }
-            
             // Use a set to remove duplicates, then convert back to an array
             arr = [...new Set(arr)];
-            
-            // If all elements were the same, arr will have only one unique element
-            if (arr.length === 1) {
-                return -Infinity;
+
+            if (arr.length < 2) {
+                return "Array has fewer than two unique elements.";
             }
 
             // Sort the array in descending order
@@ -30,11 +22,22 @@
 
         function Main() {
             var n = parseInt(prompt("Enter the number of elements"), 10);
+            if (isNaN(n) || n <= 0) {
+                alert("Please enter a valid positive number for the number of elements.");
+                return;
+            }
+
             var arr = [];
             for (var i = 0; i < n; i++) {
-                 arr[i] = prompt("Enter element " + (i + 1));
+                var element = prompt("Enter element " + (i + 1));
+                var num = parseFloat(element);
+                if (isNaN(num)) {
+                    alert("Invalid input. Please enter only numbers.");
+                    return;
+                }
+                arr.push(num);
             }
-			
+
             alert(secondHighest(arr));
         }
 
@@ -43,6 +46,3 @@
 </body>
 </html>
 
-</body>
-
-</html>
