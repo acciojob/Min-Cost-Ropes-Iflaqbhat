@@ -9,26 +9,24 @@
     <script>
         // Function to find the minimum cost of connecting ropes
         function mincost(arr) {
-            // Step 1: Build a min-heap (priority queue)
-            let heap = arr.slice(); // Make a copy of the array to avoid modifying the original
-            heap.sort((a, b) => a - b); // Sort initially (min-heap property)
-
             let totalCost = 0;
 
-            // Step 2: While there is more than one rope, keep combining
-            while (heap.length > 1) {
-                // Step 3: Extract the two smallest ropes
-                let first = heap.shift();
-                let second = heap.shift();
+            // Keep combining ropes until one rope remains
+            while (arr.length > 1) {
+                // Step 1: Sort the array to get the two smallest ropes
+                arr.sort((a, b) => a - b);
 
-                // Step 4: Calculate the cost to connect them
+                // Step 2: Extract the two smallest ropes
+                let first = arr.shift();
+                let second = arr.shift();
+
+                // Step 3: Calculate the cost to connect them
                 let cost = first + second;
 
-                // Step 5: Add the combined rope back to the heap (in sorted order)
-                heap.push(cost);
-                heap.sort((a, b) => a - b); // Maintain the min-heap property
+                // Step 4: Add the combined rope back into the array
+                arr.push(cost);
 
-                // Step 6: Add the cost to the total
+                // Step 5: Add the cost to the total
                 totalCost += cost;
             }
 
