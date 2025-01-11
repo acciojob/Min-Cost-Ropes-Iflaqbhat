@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <title>Find Second Highest Number</title>
 </head>
 <body>
     <script>
+        // Function to find the second highest number
         function secondHighest(arr) {
-            // Use a set to remove duplicates, then convert back to an array
-            arr = [...new Set(arr)];
+            // Remove duplicates and sort in descending order
+            arr = [...new Set(arr)].sort((a, b) => b - a);
 
+            // Check if there are at least two unique elements
             if (arr.length < 2) {
                 return "Array has fewer than two unique elements.";
             }
 
-            // Sort the array in descending order
-            arr.sort((a, b) => b - a);
-
-            // Return the second highest element
+            // Return the second highest number
             return arr[1];
         }
 
+        // Main function to take user input
         function Main() {
             var n = parseInt(prompt("Enter the number of elements"), 10);
             if (isNaN(n) || n <= 0) {
@@ -38,11 +38,12 @@
                 arr.push(num);
             }
 
-            alert(secondHighest(arr));
+            // Display the result
+            alert("The second highest number is: " + secondHighest(arr));
         }
 
+        // Call the main function
         Main();
     </script>
 </body>
 </html>
-
