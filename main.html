@@ -1,47 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min Cost Ropes</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <script>
-        // Function to find the minimum cost of connecting ropes
-        function mincost(arr) {
-            let totalCost = 0;
+	<!-- the entire body must be written by student -->
+    <script type="text/javascript" src="./script.js">
+</script>
 
-            // Keep combining ropes until one rope remains
-            while (arr.length > 1) {
-                // Step 1: Sort the array to get the two smallest ropes
-                arr.sort((a, b) => a - b);
-
-                // Step 2: Extract the two smallest ropes
-                let first = arr.shift();
-                let second = arr.shift();
-
-                // Step 3: Calculate the cost to connect them
-                let cost = first + second;
-
-                // Step 4: Add the combined rope back into the array
-                arr.push(cost);
-
-                // Step 5: Add the cost to the total
-                totalCost += cost;
-            }
-
-            // Return the total cost to connect all ropes
-            return totalCost;
-        }
-
-        // Example usage of the function
-        function Main() {
-            let arr = [4, 3, 2, 6]; // Test input: Array of rope lengths
-            let result = mincost(arr);
-            alert("Minimum cost to connect all ropes: " + result); // Output the result
-        }
-
-        Main();
-    </script>
 </body>
+
 </html>
