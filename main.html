@@ -1,48 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Find Second Highest Number</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Cost Ropes</title>
 </head>
 <body>
     <script>
-        // Function to find the second highest number
-        function secondHighest(arr) {
-            // Remove duplicates and sort in descending order
-            arr = [...new Set(arr)].sort((a, b) => b - a);
+        // Function to find the minimum cost of connecting ropes
+        function mincost(arr) {
+            // Step 1: Build a min-heap (priority queue)
+            let heap = arr.slice(); // Make a copy of the array to avoid modifying the original
+            heap.sort((a, b) => a - b); // Sort initially (min-heap property)
 
-            // Check if there are at least two unique elements
-            if (arr.length < 2) {
-                return "Array has fewer than two unique elements.";
+            let totalCost = 0;
+
+            // Step 2: While there is more than one rope, keep combining
+            while (heap.length > 1) {
+                // Step 3: Extract the two smallest ropes
+                let first = heap.shift();
+                let second = heap.shift();
+
+                // Step 4: Calculate the cost to connect them
+                let cost = first + second;
+
+                // Step 5: Add the combined rope back to the heap (in sorted order)
+                heap.push(cost);
+                heap.sort((a, b) => a - b); // Maintain the min-heap property
+
+                // Step 6: Add the cost to the total
+                totalCost += cost;
             }
 
-            // Return the second highest number
-            return arr[1];
+            // Return the total cost to connect all ropes
+            return totalCost;
         }
 
-        // Main function to take user input
+        // Example usage of the function
         function Main() {
-            var n = parseInt(prompt("Enter the number of elements"), 10);
-            if (isNaN(n) || n <= 0) {
-                alert("Please enter a valid positive number for the number of elements.");
-                return;
-            }
-
-            var arr = [];
-            for (var i = 0; i < n; i++) {
-                var element = prompt("Enter element " + (i + 1));
-                var num = parseFloat(element);
-                if (isNaN(num)) {
-                    alert("Invalid input. Please enter only numbers.");
-                    return;
-                }
-                arr.push(num);
-            }
-
-            // Display the result
-            alert("The second highest number is: " + secondHighest(arr));
+            let arr = [4, 3, 2, 6]; // Test input: Array of rope lengths
+            let result = mincost(arr);
+            alert("Minimum cost to connect all ropes: " + result); // Output the result
         }
 
-        // Call the main function
         Main();
     </script>
 </body>
